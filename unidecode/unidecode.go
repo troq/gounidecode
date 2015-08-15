@@ -5,18 +5,19 @@
 package unidecode
 
 import (
+	"bytes"
 	"unicode"
 )
 
 // Given an unicode encoded string, returns
 // another string with non-ASCII characters replaced
 // with their closest ASCII counterparts.
-// e.g. Unicode("áéíóú") => "aeiou" 
+// e.g. Unicode("áéíóú") => "aeiou"
 func Unidecode(s string) string {
-	str := ""
+	var str bytes.Buffer
 	for _, c := range s {
 		if c <= unicode.MaxASCII {
-			str += string(c)
+			str.WriteRune(c)
 			continue
 		}
 		if c > unicode.MaxRune {
@@ -24,8 +25,8 @@ func Unidecode(s string) string {
 			continue
 		}
 		if d, ok := transliterations[c]; ok {
-			str += d
+			str.WriteString(d)
 		}
 	}
-	return str
+	return str.String()
 }
