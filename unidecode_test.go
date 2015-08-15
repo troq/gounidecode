@@ -5,7 +5,7 @@ import (
 )
 
 func testTransliteration(original string, decoded string, t *testing.T) {
-	if r := Unidecode(original); r != decoded {
+	if r := Decode(original); r != decoded {
 		t.Errorf("Expected '%s', got '%s'\n", decoded, r)
 	}
 }

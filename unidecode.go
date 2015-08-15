@@ -13,7 +13,7 @@ import (
 // another string with non-ASCII characters replaced
 // with their closest ASCII counterparts.
 // e.g. Unicode("áéíóú") => "aeiou"
-func Unidecode(s string) string {
+func Decode(s string) string {
 	var str bytes.Buffer
 	for _, c := range s {
 		if c <= unicode.MaxASCII {
